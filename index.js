@@ -11,7 +11,7 @@ const cache = new NodeCache({ stdTTL: 900 });
 const CSV_URL =
   "https://docs.google.com/spreadsheets/d/1g4zYW-EZw7gjZ2_ZNCcn7AATzRsVLBM1aIfoV6vumBY/export?format=csv&gid=0";
 
-  /**
+/**
  * Cloud Function
  */
 export const app = async (req, res) => {
@@ -43,3 +43,39 @@ export const app = async (req, res) => {
     });
   }
 };
+
+/**
+ * Valida token
+ */
+function isValidToken(xToken) {
+  return xToken && xToken === process.env["x_token"];
+}
+
+/**
+ * Obtiene y parsea el CSV
+ */
+async function fetchList() {
+  let cached = cache.get("phones");
+
+  if (!_.isEmpty(cached)) {
+    return cached;
+  }
+
+  Logger.info("No cache — fetching CSV desde Google Sheets");
+
+  const response = await fetch(CSV_URL);
+  const csv = await response.text();
+
+  // Divide líneas y elimina vacías
+  const lines = csv
+    .split("\n")
+    .map(line => line.trim())
+    .filter(line => line.length > 0);
+
+  // La primera línea es encabezado → eliminar
+  const [, ...phones] = lines;
+
+  cache.set("phones", phones);
+
+  return phones;
+}
