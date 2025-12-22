@@ -1,0 +1,14 @@
+{
+  "type": "module",
+  "dependencies": {
+    "body-parser": "^2.2.1",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "lodash": "^4.17.21",
+    "node-cache": "^5.1.2",
+    "xlsx": "^0.18.5"
+  },
+  "scripts": {
+  "start": "functions-framework --target=app"
+}
+}
