@@ -1,0 +1,58 @@
+# =========================
+# Node.js
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# OS / Editor files
+# =========================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# =========================
+# Build / temp files
+# =========================
+dist/
+build/
+.tmp/
+temp/
+
+# =========================
+# Google Cloud Functions
+# =========================
+.gcloud/
+.firebase/
+firebase-debug.log
+runtimeconfig.json
+
+# =========================
+# Coverage / tests
+# =========================
+coverage/
+.nyc_output/
+
+# =========================
+# Misc
+# =========================
+*.tgz
